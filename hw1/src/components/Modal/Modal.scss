@@ -1,0 +1,112 @@
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 560px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: RGBA(231, 76, 60, 1);
+    border-radius: 6px;
+
+    .modal-close {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        display: inline-flex;
+        vertical-align: middle;
+        text-align: center;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important;
+        outline: none;
+        -webkit-appearance: none;
+        border: none;
+        cursor: pointer;
+        user-select: none;
+        background-color: transparent;
+    }
+
+    .modal-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px;
+        background-color: RGBA(212, 70, 55, 1);
+        margin-bottom: 24px;
+        font-size: 22px;
+        font-weight: 500;
+        font-style: normal;
+        text-align: left;
+        color: #FFFFFF;
+        border-radius: 6px;
+    }
+
+    h4 {
+        margin: 0;
+    }
+
+    .modal-content {
+        padding: 40px;
+        font-size: 15px;
+        font-weight: 400;
+        font-style: normal;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .modal-footer {
+        padding-bottom: 30px;
+    }
+
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+.btn {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    text-align: center;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    outline: none;
+    -webkit-appearance: none;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    background-color: #6b78d6;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+    min-width: 101px;
+	height: 41px;
+    border-radius: 4px;
+}
+
+.btn:has(svg){
+    background: none;
+    min-width: 20px;
+    height: 20px;
+    color: #FFFFFF;
+    width: auto;
+    height:auto;
+}
