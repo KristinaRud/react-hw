@@ -1,0 +1,271 @@
+.films__title {
+    // position: relative;
+    display: inline;
+    // margin: 0 26px;
+    font-size: 32px;
+    font-weight: 600;
+
+    // &:before {
+    //     content: '';
+    //     display: block;
+    //     position: absolute;
+    //     bottom: -12px;
+    //     left: 0;
+    //     width: 16%;
+    //     height: 6px;
+    //     border-radius: 6px;
+    //     background-color: #afaeae;
+    // }
+}
+
+.films__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 0;
+
+    &.pending {
+        flex-wrap: nowrap;
+        padding: 40px 26px;
+        box-sizing: border-box;
+
+        .film__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 594px;
+            border-radius: 4px;
+            background-color: #dbdbdb;
+
+            svg {
+                width: 220px;
+            }
+
+            &:hover {
+                transform: scale(1.1);
+                z-index: 10;
+            }
+        }
+    }
+
+    .swiper-wrapper {
+        padding: 40px 26px;
+        box-sizing: border-box;
+    }
+
+    .film__item {
+        flex-shrink: 0;
+        box-sizing: border-box;
+        width: 20%;
+        margin-right: 16px;
+        cursor: pointer;
+        transition: all 450ms;
+
+        &:hover {
+            margin-right: 36px !important;
+
+            .film-poster img {
+                transform: scale(1.1);
+                z-index: 10;
+            }
+        }
+
+        .film-poster {
+            img {
+                position: relative;
+                border-radius: 4px;
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+                transition: transform 0.25s;
+            }
+        }
+    }
+}
+
+.films__slider {
+    overflow: hidden;
+}
+
+.module-header{
+    position: relative;
+    margin-left: 0;
+    // margin-top: 30px;
+    // margin-bottom: 50px;
+    font: 800 26px/1 "RobotoCondensed","Trebuchet MS",Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.module-header::before{
+    left: 53px;
+    top: -5px;
+    transform-origin: left bottom;
+    background-color: #c6a972;
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute;
+    transform: rotate(-45deg) skewX(45deg);
+    width: 20px;
+}
+.module-header::after{
+    left: -6px;
+    // top: calc(100%+3px);
+    transform-origin: right top;
+    background-color: #c6a972;
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute;
+    transform: rotate(-45deg) skewX(45deg);
+    width: 20px;
+}
+
+.row-item {
+    margin: 0 0 30px 0
+}
+
+.comic-item {
+    &:hover {
+        margin-right: 36px !important;
+
+        .row-item-image img {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+    }
+}
+
+.row-item-image {
+    img {
+        transition: transform 0.25s;
+    }
+}
+
+.row-item-text h5,
+.row-item-text .meta-title {
+    font: 800 14px/1.2 "Roboto Bold", "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+
+.row-item-image {
+    position: relative;
+    display: inline-block;
+}
+
+.row-item-image img {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+.swiper{
+    position: static;
+}
+.swiper-button-next{
+    right: 0;
+}
+.swiper-button-prev{
+    left: 0;
+}
+.meta-title{
+    text-decoration: none;
+    font: 700 14px/1.2 "Roboto Bold","Trebuchet MS",Helvetica,Arial,sans-serif;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.row-item:hover .row-item-text h5, .row-item:hover .row-item-text .meta-title {
+    color: #e62429;
+}
+
+.row-item-text .meta-creators {
+    font: normal 11px/1.2 "Roboto","Trebuchet MS",Helvetica,Arial,sans-serif;
+    letter-spacing: 0;
+}
+
+.row-item-text{
+    height: 60px;
+}
+
+.price-item{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.btn-buy{
+    background-color: rgba(0,0,0,0);
+    border-radius: 0;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin: 15px auto;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    letter-spacing: 0px;
+    width: auto;
+    z-index: 10;
+}
+
+.btn-buy::before {
+    border-width: 1px 1px 0 0;
+    right: 0;
+    margin-left: 16px;
+}
+
+.btn-buy::after{
+    border-width: 0 0 1px 1px;
+    left: 0;
+    margin-right: 16px;
+}
+
+.btn-buy::before, .btn-buy::after{
+
+    background-color: #e62429;
+    border-color: #e62429;
+    transition: none;
+
+    border-style: solid;
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: 15px;
+    
+}
+
+
+.innerFill{
+    padding: 0 20px;
+    color: #fff;
+    background-color: #e62429;
+    transition: none;
+    text-align: center;
+    line-height: 15px;
+    text-transform: uppercase;
+    
+}
+
+.innerFill::before, .innerFill::after{
+    border-color: #e62429 rgba(0,0,0,0);
+    transition: none;
+    border-style: solid;
+    border-width: 0 0 16px 16px;
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+}
+
+.innerFill::before{
+    left: 0;
+    top: 0;
+}
+
+.innerFill::after{
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
