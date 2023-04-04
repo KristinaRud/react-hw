@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 export default class Modal extends Component {
   render() {
     const { closeModal, handlerModal, content } = this.props;
-    const { title, img, creators } = content;
+    const { title, img, creators, price } = content;
     return (
       <div className="modal-wrapper" onClick={closeModal}>
         <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -47,7 +47,7 @@ export default class Modal extends Component {
                   handlerModal();
                   closeModal();
                 }}
-                text="Add to cart"
+                text={`Buy $${price}`}
               />
               {/* <button className="btn" onClick={closeModal} type="button">Cancel</button> */}
             </div>
@@ -56,10 +56,21 @@ export default class Modal extends Component {
       </div>
     );
   }
-}
+};
 
 Modal.propTypes = {
-  closeModal: PropTypes.func,
-  handlerModal: PropTypes.func,
-  content: PropTypes.object,
-};
+  closeModal: PropTypes.func.isRequired,
+  handlerModal: PropTypes.func.isRequired,
+  content: PropTypes.arrayOf(PropTypes.shape({
+    title:PropTypes.string, 
+    img:PropTypes.arrayOf(PropTypes.shape({
+      url:PropTypes.string,
+      portrait_uncanny:PropTypes.string,
+      background:PropTypes.string,
+      clean:PropTypes.string
+    })).isRequired,
+    creators: PropTypes.string, 
+    price:PropTypes.string
+  })).isRequired
+}
+

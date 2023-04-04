@@ -73,8 +73,16 @@ ComicsItem.propTypes = {
   title: PropTypes.string,
   creators: PropTypes.string,
   price: PropTypes.string,
-  isFavorite: PropTypes.bool,
-  addToFavorites: PropTypes.func,
-  isModal: PropTypes.func,
-  currentComics: PropTypes.func,
+  isFavorite: PropTypes.bool.isRequired,
+  addToFavorites: PropTypes.func.isRequired,
+  isModal: PropTypes.func.isRequired,
+  currentComics: PropTypes.func.isRequired,
+};
+
+ComicsItem.defaultProps = {
+  src: "https://i0.wp.com/roadmap-tech.com/wp-content/uploads/2019/04/placeholder-image.jpg?resize=400%2C400&ssl=1",
+  alt: "alt",
+  title: "title",
+  creators: "no creators",
+  price: "0",
 };

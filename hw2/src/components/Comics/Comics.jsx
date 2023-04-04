@@ -73,8 +73,8 @@ export default class Comics extends Component {
 
 
 Comics.propTypes = {
-  isFavorite:PropTypes.func,
-  handlerFavorites:PropTypes.func,
-  isModal: PropTypes.func,
-  currentComics: PropTypes.func
+  isFavorite:PropTypes.func.isRequired,
+  handlerFavorites:PropTypes.func.isRequired,
+  isModal: PropTypes.func.isRequired,
+  currentComics: PropTypes.func.isRequired
 };

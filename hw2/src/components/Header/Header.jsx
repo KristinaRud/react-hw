@@ -78,3 +78,8 @@ Header.propTypes = {
   countOrder: PropTypes.number, 
   countFavor: PropTypes.number
 };
+
+Header.defaultProps = {
+  countOrder: "0", 
+  countFavor: "0"
+};
