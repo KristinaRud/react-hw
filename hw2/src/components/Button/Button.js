@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 class Button extends Component {
   render() {
-    const { text, onClick} = this.props;
+    const { text, onClick, className, type} = this.props;
     return (
       <>
         <button type={type}
@@ -28,5 +28,4 @@ Button.propTypes = {
 
 Button.defaultProps={
   type:"button",
-  className:"btn-buy"
 }

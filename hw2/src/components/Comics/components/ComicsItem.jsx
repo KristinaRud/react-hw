@@ -55,6 +55,7 @@ export default class ComicsItem extends Component {
         <div className="price-item">
           <h5 className="price">${price}</h5>
           <Button
+            className="btn-buy"
             onClick={() => {
               isModal();
               currentComics();

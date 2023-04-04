@@ -43,6 +43,7 @@ export default class Modal extends Component {
           <div className="modal-footer">
             <div className="button-wrapper">
               <Button
+                className="btn-buy"
                 onClick={() => {
                   handlerModal();
                   closeModal();
@@ -62,15 +63,15 @@ Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   handlerModal: PropTypes.func.isRequired,
   content: PropTypes.arrayOf(PropTypes.shape({
-    title:PropTypes.string, 
-    img:PropTypes.arrayOf(PropTypes.shape({
-      url:PropTypes.string,
-      portrait_uncanny:PropTypes.string,
-      background:PropTypes.string,
-      clean:PropTypes.string
+    title: PropTypes.string,
+    img: PropTypes.arrayOf(PropTypes.shape({
+      url: PropTypes.string,
+      portrait_uncanny: PropTypes.string,
+      background: PropTypes.string,
+      clean: PropTypes.string
     })).isRequired,
-    creators: PropTypes.string, 
-    price:PropTypes.string
+    creators: PropTypes.string,
+    price: PropTypes.string
   })).isRequired
 }
 
