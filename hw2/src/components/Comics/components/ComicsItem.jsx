@@ -27,7 +27,7 @@ export default class ComicsItem extends Component {
           <h5 className="meta-title">
             <a
               className="meta-title ellipsis"
-              href="//www.marvel.com/comics/issue/24822/amazing_spider-man_presents_anti-venom_-_new_ways_to_live_2009_2"
+              href="#"
             >
               {title}
             </a>
