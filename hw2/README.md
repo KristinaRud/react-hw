@@ -1,4 +1,4 @@
-[#DEMO][https://kristinarud.github.io/marvel/]
+[#DEMO](https://kristinarud.github.io/marvel/)
 
 # Getting Started with Create React App
 
