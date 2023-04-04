@@ -73,7 +73,7 @@ export default class App extends Component {
         )
       );
       comicsFavorList = this.state.favoriteComics.filter((element) => element.id !== favorite.id);
-	  console.log("comicsFavorList", comicsFavorList);
+      console.log("comicsFavorList", comicsFavorList);
       localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
       localStorage.setItem(`counterFavorite`, comicsFavorList.length);
       this.setState((prev) => {
@@ -88,7 +88,7 @@ export default class App extends Component {
 
   isFavorite = (comics) => {
     const favor = this.state.favoriteComics.filter((el) => el.id === comics);
-    return favor.length ? true : false;
+    return !!favor.length;
   };
 
   handlerOrder = (order) => {

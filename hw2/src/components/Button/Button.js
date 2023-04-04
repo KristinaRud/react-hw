@@ -7,8 +7,8 @@ class Button extends Component {
     const { text, onClick} = this.props;
     return (
       <>
-        <button
-          className="btn-buy"
+        <button type={type}
+          className={className}
           onClick={onClick}
         >
           <span className="innerFill">{text}</span>
@@ -23,5 +23,10 @@ export default Button;
 Button.propTypes = {
   isModal: PropTypes.func,
   currentComics: PropTypes.func,
-  text:PropTypes.string
+  text:PropTypes.string,
 };
+
+Button.defaultProps={
+  type:"button",
+  className:"btn-buy"
+}
