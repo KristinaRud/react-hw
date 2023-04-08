@@ -12,28 +12,18 @@ export default class App extends Component {
     currentComics: {},
     favoriteComics: [],
     orderComics: [],
-    countFavor: 0,
-    countOrder: 0,
   };
 
   componentDidMount = () => {
-    if (localStorage.getItem("counterFavorite")) {
-      this.setState({ countFavor: +localStorage.getItem("counterFavorite") });
-    }
-    if (localStorage.getItem(`counterOrder`)) {
-      this.setState({ countOrder: +localStorage.getItem(`counterOrder`) });
-    }
     if (localStorage.getItem(`arrFavorite`)) {
       this.setState({
         favoriteComics: JSON.parse(localStorage.getItem(`arrFavorite`)),
       });
-      console.log("local", JSON.parse(localStorage.getItem(`arrFavorite`)));
     }
     if (localStorage.getItem(`arrOrder`)) {
       this.setState({
         orderComics: JSON.parse(localStorage.getItem(`arrOrder`)),
       });
-      console.log("local", JSON.parse(localStorage.getItem(`arrOrder`)));
     }
   };
 
@@ -58,12 +48,10 @@ export default class App extends Component {
     if (!newFavorites) {
       comicsFavorList = [...this.state.favoriteComics, favorite];
       localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
-      localStorage.setItem(`counterFavorite`, comicsFavorList.length);
       this.setState((prev) => {
         return {
           ...prev,
           favoriteComics: [...prev.favoriteComics, favorite],
-          countFavor: comicsFavorList.length,
         };
       });
     } else {
@@ -73,14 +61,11 @@ export default class App extends Component {
         )
       );
       comicsFavorList = this.state.favoriteComics.filter((element) => element.id !== favorite.id);
-      console.log("comicsFavorList", comicsFavorList);
       localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
-      localStorage.setItem(`counterFavorite`, comicsFavorList.length);
       this.setState((prev) => {
         return {
           ...prev,
           favoriteComics: comicsFavorList,
-          countFavor: prev.countFavor - 1,
         };
       });
     }
@@ -94,22 +79,20 @@ export default class App extends Component {
   handlerOrder = (order) => {
     const orderList = [...this.state.orderComics, order];
     localStorage.setItem(`arrOrder`, JSON.stringify(orderList));
-    localStorage.setItem(`counterOrder`, orderList.length);
     this.setState((prev) => {
       return {
         ...prev,
         orderComics: [...prev.orderComics, order],
-        countOrder: orderList.length,
       };
     });
   };
 
   render() {
-    const { currentComics, countOrder, countFavor, favoriteComics } =
+    const { currentComics, orderComics, favoriteComics } =
       this.state;
     return (
       <div className="page__wrapper">
-        <Header countOrder={countOrder} countFavor={countFavor} />
+        <Header countOrder={orderComics.length} countFavor={favoriteComics.length} />
         <main className="main">
           <div className="container">
             <Comics
@@ -125,7 +108,6 @@ export default class App extends Component {
         {this.state.isModal && (
           <Modal
             closeModal={this.handlerToggleModal}
-            title={currentComics.title}
             content={currentComics}
             handlerModal={() => this.handlerOrder(currentComics)}
           />

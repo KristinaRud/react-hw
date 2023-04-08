@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 export default class Modal extends Component {
   render() {
     const { closeModal, handlerModal, content } = this.props;
+    console.log(content);
     const { title, img, creators, price } = content;
     return (
       <div className="modal-wrapper" onClick={closeModal}>
@@ -62,16 +63,16 @@ export default class Modal extends Component {
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   handlerModal: PropTypes.func.isRequired,
-  content: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    img: PropTypes.arrayOf(PropTypes.shape({
+  content: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    img: PropTypes.shape({
       url: PropTypes.string,
       portrait_uncanny: PropTypes.string,
       background: PropTypes.string,
       clean: PropTypes.string
-    })).isRequired,
+    }).isRequired,
     creators: PropTypes.string,
     price: PropTypes.string
-  })).isRequired
+  }).isRequired
 }
 
