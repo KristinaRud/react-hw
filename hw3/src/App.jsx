@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import Comics from "./components/Comics/Comics";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -6,113 +6,118 @@ import Modal from "./components/Modal/Modal";
 
 import "./styles/styles.scss";
 
-export default class App extends Component {
-  state = {
-    isModal: false,
-    currentComics: {},
-    favoriteComics: [],
-    orderComics: [],
-  };
+const App =()=> {
+  const [isModal, setIsModal]=useState(false);
+  const [currentComics, setCurrentComics]=useState({});
+  const [favoriteComics, setFavoriteComics]=useState([]);
+  const [orderComics, setOrderComics]=useState([]);
 
-  componentDidMount = () => {
+  useEffect (() => {
     if (localStorage.getItem(`arrFavorite`)) {
-      this.setState({
-        favoriteComics: JSON.parse(localStorage.getItem(`arrFavorite`)),
-      });
+      setFavoriteComics(JSON.parse(localStorage.getItem(`arrFavorite`)));
+      // this.setState({
+      //   favoriteComics: JSON.parse(localStorage.getItem(`arrFavorite`)),
+      // });
     }
     if (localStorage.getItem(`arrOrder`)) {
-      this.setState({
-        orderComics: JSON.parse(localStorage.getItem(`arrOrder`)),
-      });
+      setOrderComics(JSON.parse(localStorage.getItem(`arrOrder`)));
+      // this.setState({
+      //   orderComics: JSON.parse(localStorage.getItem(`arrOrder`)),
+      // });
     }
+  },[]);
+
+  const handlerToggleModal = () => {
+    setIsModal(!isModal);
+    // this.setState((prev) => {
+    //   return { ...prev, isModal: !prev.isModal };
+    // });
   };
 
-  handlerToggleModal = () => {
-    this.setState((prev) => {
-      return { ...prev, isModal: !prev.isModal };
-    });
-  };
-
-  handlerCurrentComics = (currentComics) => {
+  const handlerCurrentComics = (currentComics) => {
     console.log("cur", currentComics);
-    this.setState((prev) => {
-      return { ...prev, currentComics: { ...currentComics } };
-    });
+    setCurrentComics({...currentComics});
+    // this.setState((prev) => {
+    //   return { ...prev, currentComics: { ...currentComics } };
+    // });
   };
 
-  handlerFavorites = (favorite) => {
-    let newFavorites = this.state.favoriteComics.find(
+  const handlerFavorites = (favorite) => {
+    let newFavorites = favoriteComics.find(
       (el) => el.id === favorite.id
     );
     let comicsFavorList;
     if (!newFavorites) {
-      comicsFavorList = [...this.state.favoriteComics, favorite];
+      comicsFavorList = [...favoriteComics, favorite];
       localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
-      this.setState((prev) => {
-        return {
-          ...prev,
-          favoriteComics: [...prev.favoriteComics, favorite],
-        };
-      });
+      setFavoriteComics([...favoriteComics, favorite])
+      // this.setState((prev) => {
+      //   return {
+      //     ...prev,
+      //     favoriteComics: [...prev.favoriteComics, favorite],
+      //   };
+      // });
     } else {
       console.log(
-        this.state.favoriteComics.findIndex(
+        favoriteComics.findIndex(
           (element) => element.id === favorite.id
         )
       );
-      comicsFavorList = this.state.favoriteComics.filter((element) => element.id !== favorite.id);
+      comicsFavorList = favoriteComics.filter((element) => element.id !== favorite.id);
       localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
-      this.setState((prev) => {
-        return {
-          ...prev,
-          favoriteComics: comicsFavorList,
-        };
-      });
+      setFavoriteComics(comicsFavorList);
+      // this.setState((prev) => {
+      //   return {
+      //     ...prev,
+      //     favoriteComics: comicsFavorList,
+      //   };
+      // });
     }
   };
 
-  isFavorite = (comics) => {
-    const favor = this.state.favoriteComics.filter((el) => el.id === comics);
+  const isFavorite = (comics) => {
+    const favor = favoriteComics.filter((el) => el.id === comics);
     return !!favor.length;
   };
 
-  handlerOrder = (order) => {
-    const orderList = [...this.state.orderComics, order];
+  const handlerOrder = (order) => {
+    const orderList = [...orderComics, order];
     localStorage.setItem(`arrOrder`, JSON.stringify(orderList));
-    this.setState((prev) => {
-      return {
-        ...prev,
-        orderComics: [...prev.orderComics, order],
-      };
-    });
+    setOrderComics([...orderComics, order])
+    // this.setState((prev) => {
+    //   return {
+    //     ...prev,
+    //     orderComics: [...prev.orderComics, order],
+    //   };
+    // });
   };
 
-  render() {
-    const { currentComics, orderComics, favoriteComics } =
-      this.state;
-    return (
-      <div className="page__wrapper">
-        <Header countOrder={orderComics.length} countFavor={favoriteComics.length} />
-        <main className="main">
-          <div className="container">
-            <Comics
-              isModal={this.handlerToggleModal}
-              currentComics={this.handlerCurrentComics}
-              handlerFavorites={this.handlerFavorites}
-              favoriteList={favoriteComics}
-              isFavorite={this.isFavorite}
-            />
-          </div>
-        </main>
-        <Footer />
-        {this.state.isModal && (
-          <Modal
-            closeModal={this.handlerToggleModal}
-            content={currentComics}
-            handlerModal={() => this.handlerOrder(currentComics)}
+
+  return (
+    <div className="page__wrapper">
+      <Header countOrder={orderComics.length} countFavor={favoriteComics.length} />
+      <main className="main">
+        <div className="container">
+          
+          <Comics
+            isModal={handlerToggleModal}
+            currentComics={handlerCurrentComics}
+            handlerFavorites={handlerFavorites}
+            favoriteList={favoriteComics}
+            isFavorite={isFavorite}
           />
-        )}
-      </div>
-    );
-  }
+        </div>
+      </main>
+      <Footer />
+      {isModal && (
+        <Modal
+          closeModal={handlerToggleModal}
+          content={currentComics}
+          handlerModal={() => handlerOrder(currentComics)}
+        />
+      )}
+    </div>
+  );
 }
+
+export default App;
