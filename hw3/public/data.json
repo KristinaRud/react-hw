@@ -1,0 +1,218 @@
+[
+  {
+    "id":1,
+    "title":"Avengers: Beyond #1",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/3/20/641e08fb31931/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Landy, Land",
+    "price":"2.25"
+  },
+  {
+    "id":2,
+    "title":"Avengers #8",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/7/40/574367c37ee7e/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Hickman, Weaver",
+    "price":"1.99"
+  },
+  {
+    "id":3,
+    "title":"Venom: Lethal Protector II #1",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/6/80/641e08e772b5c/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Michelinie, Karami",
+    "price":"2.25"
+  },
+  {
+    "id":4,
+    "title":"Betsy Braddock: Captain Britain #2",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/7/00/641e08d8ad598/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Howard, Georgiev",
+    "price":"1.99"
+  },
+  {
+    "id":5,
+    "title":"Star Wars: The High Republic - The Blade #4",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/3/f0/641e088f7a808/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Soule, Morales",
+    "price":"2.25"
+  },
+  {
+    "id":6,
+    "title":"STAR WARS: RETURN OF THE JEDI - JABBA'S PALACE 1 #1",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/6/00/641e08a80b90c/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Guggenheim, Miracolo",
+    "price":"2.25"
+  },
+  {
+    "id":7,
+    "title":"Thor #32",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/4/20/641e08897a77b/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Gronbekk, Gedeon",
+    "price":"2.25"
+  },
+  {
+    "id":8,
+    "title":"Invincible Iron Man #4",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/8/e0/641e08c11bc6e/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Duggan, Frigeri",
+    "price":"2.99"
+  },
+  {
+    "id":9,
+    "title":"Strange Academy: Finals #5",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/9/80/641e08aff36e4/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Young, Ramos",
+    "price":"1.99"
+  },
+  {
+    "id":10,
+    "title":"Daredevil #9",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/8/a0/641e08ceb131b/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Zdarsky, Latorre",
+    "price":"1.99"
+  },
+  {
+    "id":11,
+    "title":"Star Wars: The High Republic #7",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/6/40/641e08ad719a4/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Scott, Broccardo",
+    "price":"1.99"
+  },
+  {
+    "id":12,
+    "title":"Star Wars: The Mandalorian #6",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/6/d0/639a7b072f9d4/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Barnes, Jeanty",
+    "price":"2.25"
+  },
+  {
+    "id":13,
+    "title":"Star Wars: The Mandalorian #5",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/6/70/63613a08bf8e5/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Barnes, Jeanty",
+    "price":"2.25"
+  },
+  {
+    "id":14,
+    "title":"The Marvels Project #4",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/a/10/57f3f9da10d99/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Brubaker, Epting",
+    "price":"2.25"
+  },
+  {
+    "id":15,
+    "title":"Deadpool Kills the Marvel Universe #1",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/3/40/5730e351bd592/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Bunn, Andrews",
+    "price":"1.99"
+  },
+  {
+    "id":16,
+    "title":"Dark Web: Ms. Marvel #1",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/c/b0/639a7ab7b9ce3/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Pirzada, Mortarino",
+    "price":"1.99"
+  },
+  {
+    "id":17,
+    "title":"Black Panther #12",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/3/a0/639a7b178250f/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Ridley, Peralta",
+    "price":"1.99"
+  },
+  {
+    "id":18,
+    "title":"Avengers Forever #12",
+    "img": {
+      "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/2/40/639a7abec7bad/",
+      "portrait_uncanny":"portrait_uncanny.jpg",
+      "clean":"clean.jpg",
+      "background":"background.jpg"
+    },
+    "creators":"Aaron, Kuder",
+    "price":"1.99"
+  }
+]
