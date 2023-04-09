@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ComicsItem =({src, alt, title, creators, price, isModal, isFavorite, currentComics, addToFavorites,})=>{
   return (
-    <>
+    <div>
       <div className="row-item-image">
         <a href="#" className="row-item-image-url">
           <img src={src} alt={alt} title={title} />
@@ -50,7 +50,7 @@ const ComicsItem =({src, alt, title, creators, price, isModal, isFavorite, curre
           text="Add to cart"
         />
       </div>
-    </>
+    </div>
   );
 }
 

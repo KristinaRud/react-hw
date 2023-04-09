@@ -1,0 +1,19 @@
+.page-notfound {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 auto;
+
+	.page-title {
+		margin-bottom: 24px;
+		font-size: 56px;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.page-desc {
+		font-size: 24px;
+		line-height: 1.33;
+	}
+}
