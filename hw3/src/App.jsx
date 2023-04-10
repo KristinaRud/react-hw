@@ -23,6 +23,7 @@ const App = () => {
       //   favoriteComics: JSON.parse(localStorage.getItem(`arrFavorite`)),
       // });
     }
+
     if (localStorage.getItem(`arrOrder`)) {
       setOrderComics(JSON.parse(localStorage.getItem(`arrOrder`)));
       // this.setState({
@@ -47,34 +48,18 @@ const App = () => {
   };
 
   const handlerFavorites = (favorite) => {
-    let newFavorites = favoriteComics.find((el) => el.id === favorite.id);
-    let comicsFavorList;
-    if (!newFavorites) {
-      comicsFavorList = [...favoriteComics, favorite];
-      localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
-      setFavoriteComics([...favoriteComics, favorite]);
-      // this.setState((prev) => {
-      //   return {
-      //     ...prev,
-      //     favoriteComics: [...prev.favoriteComics, favorite],
-      //   };
-      // });
-    } else {
-      console.log(
-        favoriteComics.findIndex((element) => element.id === favorite.id)
-      );
-      comicsFavorList = favoriteComics.filter(
-        (element) => element.id !== favorite.id
-      );
-      localStorage.setItem(`arrFavorite`, JSON.stringify(comicsFavorList));
-      setFavoriteComics(comicsFavorList);
-      // this.setState((prev) => {
-      //   return {
-      //     ...prev,
-      //     favoriteComics: comicsFavorList,
-      //   };
-      // });
-    }
+      setFavoriteComics((current)=>{
+        const favorList=[...current];
+        const index = favorList.findIndex((el)=>el.id===favorite.id);
+        if(index===-1){
+          favorList.push(favorite);
+        }else{
+          favorList.splice(index, 1);
+        }
+        localStorage.setItem(`arrFavorite`, JSON.stringify(favorList));
+        return favorList;
+      });
+    
   };
 
   const isFavorite = (comics) => {
@@ -148,4 +133,3 @@ const App = () => {
   );
 };
 
-export default App;
