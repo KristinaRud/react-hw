@@ -15,6 +15,7 @@ const App = () => {
   const [currentComics, setCurrentComics] = useState({});
   const [favoriteComics, setFavoriteComics] = useState([]);
   const [orderComics, setOrderComics] = useState([]);
+  const [valueInput, setValueInput] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem(`arrFavorite`)) {
@@ -83,6 +84,12 @@ const App = () => {
     
   };
 
+  const  handlerValue=(event)=>{
+    const target = event.target;
+    console.log(target.value);
+    setValueInput(target.value);
+  }
+
   return (
     <div className="page__wrapper">
       <Header
@@ -104,7 +111,7 @@ const App = () => {
                 />
               }
             />
-            <Route path={"/basket"} element={<OrderBasket />} />
+            <Route path={"/basket"} element={<OrderBasket value={valueInput} changedValue={handlerValue} orderComics={orderComics} handlerOrder={() => handlerOrder(currentComics)} />} />
             <Route
               path={"/favorite"}
               element={
@@ -132,4 +139,6 @@ const App = () => {
     </div>
   );
 };
+
+export default App;
 
