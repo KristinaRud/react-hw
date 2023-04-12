@@ -47,7 +47,7 @@ const ComicsItem =({src, alt, title, creators, price, isModal, isFavorite, curre
             isModal();
             currentComics();
           }}
-          text="Add to cart"
+          content={<span className="innerFill">Add to cart</span>}
         />
       </div>
     </div>

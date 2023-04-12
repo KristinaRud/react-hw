@@ -13,40 +13,39 @@ const FavoriteItems = ({
 }) => {
   const comicsCards = favoriteList?.map((el) => (
     <SwiperSlide key={el.id} className="row-item comic-item">
-    <ComicsItem
-      src={el.img.url + el.img.portrait_uncanny}
-      alt={el.title}
-      title={el.title}
-      creators={el.creators}
-      price={el.price}
-      isModal={isModal}
-      isFavorite={isFavorite(el.id)}
-      currentComics={() => {
-        currentComics(el);
-      }}
-      addToFavorites={() => handlerFavorites(el)}
-    />
+      <ComicsItem
+        src={el.img.url + el.img.portrait_uncanny}
+        alt={el.title}
+        title={el.title}
+        creators={el.creators}
+        price={el.price}
+        isModal={isModal}
+        isFavorite={isFavorite(el.id)}
+        currentComics={() => {
+          currentComics(el);
+        }}
+        addToFavorites={() => handlerFavorites(el)}
+      />
     </SwiperSlide>
   ));
   return (
     <div>
       <h1>FavoriteItems</h1>
-      <Swiper
-        slidesPerView={5}
-        spaceBetween={16}
-        className="films__wrapper"
-        navigation={true}
-        // grabCursor={false}
-        // draggable={false}
-        // preventClicksPropagation={true}
-        // preventClicks={true}
-        // scrollbar={{ draggable: false, hide: true }}
-        // slideToClickedSlide={false}
-        pagination={{ clickable: true }}
-        modules={[Pagination, Navigation]}
-      >
-        {comicsCards}
-      </Swiper>
+      {comicsCards.length === 0 ? (
+        <h1>No item in your wishlist</h1>
+      ) : (
+        <Swiper
+          slidesPerView={5}
+          spaceBetween={16}
+          className="films__wrapper"
+          navigation={true}
+          pagination={{ clickable: true }}
+          modules={[Pagination, Navigation]}
+        >
+          {comicsCards}
+        </Swiper>
+      )}
+
       <Link to="/">Home page</Link>
     </div>
   );

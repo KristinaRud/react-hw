@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Modal from "./components/Modal/Modal";
 
 import "./styles/styles.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import OrderBasket from "./pages/OrderBasket/OrderBasket";
 import NotPage from "./pages/NotPage/NotPage";
 import FavoriteItems from "./pages/FavoriteItems/FavoriteItems";
@@ -16,6 +16,8 @@ const App = () => {
   const [favoriteComics, setFavoriteComics] = useState([]);
   const [orderComics, setOrderComics] = useState([]);
   const [valueInput, setValueInput] = useState(0);
+
+  const location = useLocation();
 
   useEffect(() => {
     if (localStorage.getItem(`arrFavorite`)) {
@@ -49,18 +51,17 @@ const App = () => {
   };
 
   const handlerFavorites = (favorite) => {
-      setFavoriteComics((current)=>{
-        const favorList=[...current];
-        const index = favorList.findIndex((el)=>el.id===favorite.id);
-        if(index===-1){
-          favorList.push(favorite);
-        }else{
-          favorList.splice(index, 1);
-        }
-        localStorage.setItem(`arrFavorite`, JSON.stringify(favorList));
-        return favorList;
-      });
-    
+    setFavoriteComics((current) => {
+      const favorList = [...current];
+      const index = favorList.findIndex((el) => el.id === favorite.id);
+      if (index === -1) {
+        favorList.push(favorite);
+      } else {
+        favorList.splice(index, 1);
+      }
+      localStorage.setItem(`arrFavorite`, JSON.stringify(favorList));
+      return favorList;
+    });
   };
 
   const isFavorite = (comics) => {
@@ -81,19 +82,58 @@ const App = () => {
       localStorage.setItem("arrOrder", JSON.stringify(orders));
       return orders;
     });
-    
   };
 
-  const  handlerValue=(event)=>{
+  const handlerDeleteOrderItem = (order) => {
+    setOrderComics((current) => {
+      const orderList = [...current];
+      const index = orderList.findIndex((el) => el.id === order.id);
+      if (index !== -1) {
+        orderList.splice(index, 1);
+      }
+      localStorage.setItem(`arrOrder`, JSON.stringify(orderList));
+      return orderList;
+    });
+  };
+
+  const handlerValue = (event) => {
     const target = event.target;
     console.log(target.value);
     setValueInput(target.value);
-  }
+  };
+
+  const handlerInrement = (order) => {
+    console.log("incr", order);
+    setOrderComics((current) => {
+      const orders = [...current];
+      const index = orders.findIndex((el) => el.id === order.id);
+      if (index !== -1) {
+        orders[index].count += 1;
+      }
+      localStorage.setItem("arrOrder", JSON.stringify(orders));
+      return orders;
+    });
+  };
+
+  const handlerDecrement = (order) => {
+    console.log("decr", order);
+    setOrderComics((current) => {
+      const orders = [...current];
+      const index = orders.findIndex((el) => el.id === order.id);
+      if (index !== -1 && orders[index].count !== 0) {
+        orders[index].count -= 1;
+      }
+      localStorage.setItem("arrOrder", JSON.stringify(orders));
+      return orders;
+    });
+  };
 
   return (
     <div className="page__wrapper">
       <Header
-        countOrder={orderComics.map(({count})=>count).reduce((prev, curr)=>prev+curr,0)}
+        countOrder={orderComics
+          .map(({ count }) => count)
+          .reduce((prev, curr) => prev + curr, 0)}
         countFavor={favoriteComics.length}
       />
       <main className="main">
@@ -111,7 +151,21 @@ const App = () => {
                 />
               }
             />
-            <Route path={"/basket"} element={<OrderBasket value={valueInput} changedValue={handlerValue} orderComics={orderComics} handlerOrder={() => handlerOrder(currentComics)} />} />
+            <Route
+              path={"/basket"}
+              element={
+                <OrderBasket
+                  handlerToggleModal={handlerToggleModal}
+                  value={valueInput}
+                  changedValue={handlerValue}
+                  current={handlerCurrentComics}
+                  orderComics={orderComics}
+                  handlerInrement={handlerInrement}
+                  handlerDecrement={handlerDecrement}
+                  // handlerDeleteOrderItem={handlerDeleteOrderItem}
+                />
+              }
+            />
             <Route
               path={"/favorite"}
               element={
@@ -129,16 +183,34 @@ const App = () => {
         </div>
       </main>
       <Footer />
-      {isModal && (
-        <Modal
-          closeModal={handlerToggleModal}
-          content={currentComics}
-          handlerModal={() => handlerOrder(currentComics)}
-        />
-      )}
+      {isModal &&
+        (location.pathname === "/basket" ? (
+          <Modal
+            modalTitle={
+              <div className="modal-title">
+                <h2>Do you want to delete item?</h2>
+              </div>
+            }
+            closeModal={handlerToggleModal}
+            content={currentComics}
+            buttonContent={"Delete"}
+            handlerModal={() => {
+              handlerDeleteOrderItem(currentComics);
+            }}
+          />
+        ) : (
+          <Modal
+            modalTitle={""}
+            closeModal={handlerToggleModal}
+            content={currentComics}
+            buttonContent={""}
+            handlerModal={() => {
+              handlerOrder(currentComics);
+            }}
+          />
+        ))}
     </div>
   );
 };
 
 export default App;
-

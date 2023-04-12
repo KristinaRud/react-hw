@@ -2,7 +2,7 @@ import "./Modal.scss";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
 
-const Modal = ({ closeModal, handlerModal, content }) => {
+const Modal = ({modalTitle, closeModal, handlerModal, content, buttonContent}) => {
   const { title, img, creators, price } = content;
   return (
     <div className="modal-wrapper" onClick={closeModal}>
@@ -11,6 +11,7 @@ const Modal = ({ closeModal, handlerModal, content }) => {
           <img className="back-img" src={img.url + img.background} />
         </div>
         <div className="modal-box">
+          {/* надо поменять на компонент button */}
           <button type="button" onClick={closeModal} className="modal-close">
             <svg viewBox="0 0 16 16" width="16" height="16">
               <path
@@ -19,6 +20,7 @@ const Modal = ({ closeModal, handlerModal, content }) => {
               />
             </svg>
           </button>
+          {modalTitle}
           <div className="modal-header">
             <h4>{title}</h4>
           </div>
@@ -45,7 +47,7 @@ const Modal = ({ closeModal, handlerModal, content }) => {
                 handlerModal();
                 closeModal();
               }}
-              text={`Buy $${price}`}
+              content={ buttonContent!=="Delete"? <span className="innerFill">Buy ${price}</span> : <span className="innerFill">{buttonContent}</span>}
             />
             {/* <button className="btn" onClick={closeModal} type="button">Cancel</button> */}
           </div>
