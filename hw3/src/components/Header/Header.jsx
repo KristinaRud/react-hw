@@ -28,7 +28,7 @@ const Header=({ countOrder, countFavor })=> {
             </div>
           </div>
           <div className="header__logo">
-            <a href="#" className="logo">
+            <Link to="/" className="logo">
               <svg
                 width="130"
                 height="52"
@@ -46,7 +46,7 @@ const Header=({ countOrder, countFavor })=> {
                   d="M31.5 48V4H21.291l-3.64 22.735L14.102 4H4v44h8V26.792L15.577 48h4.229l3.568-21.208V48z"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
           <div className="header__actions">
             <div className="header__favorites-list">

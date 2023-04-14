@@ -1,6 +1,8 @@
 .btn-changed-count{
-    background-color: hsla(0,0%,100%,.9);
+    background-color: #ed3034;
     border: none;
+    height: 24px;
+    width: 24px;
 }
 
 .order-basket-item{
@@ -25,6 +27,7 @@ padding-top: 24px;
     flex-direction: row;
     align-items: stretch;
     height: 40px;
+    grid-gap: 25px;
 }
 
 .order-item{
@@ -56,4 +59,14 @@ a{
 
 .total-price{
     color: #e62429;
+}
+.price-item-order{
+    width: 200px;
+}
+
+.order-container{
+    overflow-y: scroll;
+    max-height: 600px;
+    height: 100%;
+    padding: 0 30px 0 10px;
 }

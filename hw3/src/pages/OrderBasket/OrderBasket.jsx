@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import cx from 'classnames';
 
 import "./OrderBasket.scss";
 import OrderItem from "./components/OrderItem/OrderItem";
 
 const OrderBasket = ({ handlerToggleModal, changedValue, current, handlerDecrement, handlerInrement, orderComics, handlerDeleteOrderItem }) => {
-  const totalPrice=(orderComics?.map(el=>el.count*el.price)).reduce((prev, curr) => prev + curr, 0);
+  const totalPrice=(orderComics?.map(el=>el.count*el.price)).reduce((prev, curr) => prev + curr, 0).toFixed(2);
   const orderCards = orderComics?.map((el) => (
     <div className="order-basket-item" key={el.id}>
       <OrderItem 
@@ -36,7 +37,9 @@ const OrderBasket = ({ handlerToggleModal, changedValue, current, handlerDecreme
         <h1>Total: {totalPrice && ( <span className="total-price">${totalPrice}</span>)}</h1>
       </div>
 
-    {(orderCards.length===0) ? <h1>No item in your basket</h1> : orderCards}
+    <div className={cx({"order-container":(orderCards.length>2)})}>
+      {(orderCards.length===0) ? <h1>No item in your basket</h1> : orderCards}
+    </div>
    
     </>
   );

@@ -96,11 +96,6 @@ const App = () => {
     });
   };
 
-  const handlerValue = (event) => {
-    const target = event.target;
-    console.log(target.value);
-    setValueInput(target.value);
-  };
 
   const handlerInrement = (order) => {
     console.log("incr", order);
@@ -120,7 +115,7 @@ const App = () => {
     setOrderComics((current) => {
       const orders = [...current];
       const index = orders.findIndex((el) => el.id === order.id);
-      if (index !== -1 && orders[index].count !== 0) {
+      if (index !== -1 && orders[index].count > 1) {
         orders[index].count -= 1;
       }
       localStorage.setItem("arrOrder", JSON.stringify(orders));
@@ -157,7 +152,6 @@ const App = () => {
                 <OrderBasket
                   handlerToggleModal={handlerToggleModal}
                   value={valueInput}
-                  changedValue={handlerValue}
                   current={handlerCurrentComics}
                   orderComics={orderComics}
                   handlerInrement={handlerInrement}

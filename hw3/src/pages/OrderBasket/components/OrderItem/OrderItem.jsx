@@ -55,7 +55,7 @@ const OrderItem = ({
             <AddIcon sx={{color:"white"}} />
           </span>
         </div>
-        <div className="price-item price">
+        <div className="price-item price-item-order">
           <h1 className="price">${price}</h1>
         </div>
       </div>
