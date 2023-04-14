@@ -6,7 +6,6 @@ const OrderItem = ({
   isModal,
   handlerDecrement,
   handlerInrement,
-  changedValue,
   current,
   src,
   alt,
@@ -22,16 +21,16 @@ const OrderItem = ({
             {title}
           </a>
         </h3>
-        <button
-          type="button"
-          className="btn-changed-count"
+        <span
+         
+          className="delete-item"
           onClick={() => {
             isModal();
             current();
           }}
         >
           <DeleteOutlineOutlinedIcon sx={{ color: "#e62429" }} />
-        </button>
+        </span>
       </div>
       <div className="card-order">
         <div className="row-item-image order-item">
@@ -40,28 +39,23 @@ const OrderItem = ({
           </a>
         </div>
         <div className="count-product">
-          <button
-            type="button"
+          <span
+            
             className="btn-changed-count"
             onClick={handlerDecrement}
           >
-            <RemoveIcon />
-          </button>
-          <input
-            value={count}
-            onChange={changedValue}
-            data-testid="cart-counter-input"
-            className="cart-counter__input ng-pristine ng-valid ng-touched"
-          ></input>
-          <button
-            type="button"
+            <RemoveIcon sx={{color:"white"}}/>
+          </span>
+          <span>{count}</span>
+          <span
+            
             className="btn-changed-count"
             onClick={handlerInrement}
           >
-            <AddIcon />
-          </button>
+            <AddIcon sx={{color:"white"}} />
+          </span>
         </div>
-        <div className="price-item">
+        <div className="price-item price">
           <h1 className="price">${price}</h1>
         </div>
       </div>
