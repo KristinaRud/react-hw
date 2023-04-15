@@ -1,30 +1,33 @@
 import PropTypes from "prop-types";
 import "./Header.scss";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Header=({ countOrder, countFavor })=> {
+const Header = ({ countOrder }) => {
+  const favorites = useSelector(state => state.favorite.favoriteList);
+  const orders = useSelector((state) => state.order.orderList);
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__actions">
             <div className="header__favorites-list">
-            <Link to="/favorite">
-              <span className="icon-favorite">
-                <span className="count">{countFavor}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    fill="#e62429"
-                    d="M16.2 8.1c-.2.1-.3.1-.4 0-4-5.7-11.6-1.7-11.6 3.8 0 4.8 6.1 8.7 11 14.1 0 0 0 .1.1.1.4.4 1 .3 1.4-.1 4.9-5.4 11-9.2 11-14.1.1-5.5-7.2-9.5-11.5-3.8z"
-                  />
-                </svg>
-              </span>
-            </Link>
+              <Link to="/favorite">
+                <span className="icon-favorite">
+                  <span className="count">{favorites.length}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="26"
+                    viewBox="0 0 32 32"
+                  >
+                    <path
+                      fill="#e62429"
+                      d="M16.2 8.1c-.2.1-.3.1-.4 0-4-5.7-11.6-1.7-11.6 3.8 0 4.8 6.1 8.7 11 14.1 0 0 0 .1.1.1.4.4 1 .3 1.4-.1 4.9-5.4 11-9.2 11-14.1.1-5.5-7.2-9.5-11.5-3.8z"
+                    />
+                  </svg>
+                </span>
+              </Link>
             </div>
           </div>
           <div className="header__logo">
@@ -50,23 +53,23 @@ const Header=({ countOrder, countFavor })=> {
           </div>
           <div className="header__actions">
             <div className="header__favorites-list">
-            <Link to="/basket">
-              <span className="icon-favorite">
-                <span className="count">{countOrder}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  className="bi bi-cart2"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill="#FFF"
-                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                  />
-                </svg>
-              </span>
-            </Link>
+              <Link to="/basket">
+                <span className="icon-favorite">
+                  <span className="count">{orders.map(({ count }) => count).reduce((prev, curr) => prev + curr, 0)}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="26"
+                    className="bi bi-cart2"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill="#FFF"
+                      d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+                    />
+                  </svg>
+                </span>
+              </Link>
             </div>
           </div>
         </div>
@@ -78,11 +81,11 @@ const Header=({ countOrder, countFavor })=> {
 export default Header;
 
 Header.propTypes = {
-  countOrder: PropTypes.number, 
+  countOrder: PropTypes.number,
   countFavor: PropTypes.number
 };
 
 Header.defaultProps = {
-  countOrder: 0, 
+  countOrder: 0,
   countFavor: 0
 };

@@ -9,128 +9,38 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import OrderBasket from "./pages/OrderBasket/OrderBasket";
 import NotPage from "./pages/NotPage/NotPage";
 import FavoriteItems from "./pages/FavoriteItems/FavoriteItems";
+import { useDispatch, useSelector } from "react-redux";
+import { actionSetFavorite, actionSetOrder, actionAddOrder, actionDeleteOrderItem } from "./reducer";
 
 const App = () => {
   const [isModal, setIsModal] = useState(false);
   const [currentComics, setCurrentComics] = useState({});
-  const [favoriteComics, setFavoriteComics] = useState([]);
-  const [orderComics, setOrderComics] = useState([]);
-  const [valueInput, setValueInput] = useState(0);
 
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem(`arrFavorite`)) {
-      setFavoriteComics(JSON.parse(localStorage.getItem(`arrFavorite`)));
-      // this.setState({
-      //   favoriteComics: JSON.parse(localStorage.getItem(`arrFavorite`)),
-      // });
+      dispatch(actionSetFavorite(JSON.parse(localStorage.getItem(`arrFavorite`))));
     }
 
     if (localStorage.getItem(`arrOrder`)) {
-      setOrderComics(JSON.parse(localStorage.getItem(`arrOrder`)));
-      // this.setState({
-      //   orderComics: JSON.parse(localStorage.getItem(`arrOrder`)),
-      // });
+      dispatch(actionSetOrder(JSON.parse(localStorage.getItem(`arrOrder`))));
     }
   }, []);
 
   const handlerToggleModal = () => {
     setIsModal(!isModal);
-    // this.setState((prev) => {
-    //   return { ...prev, isModal: !prev.isModal };
-    // });
   };
 
   const handlerCurrentComics = (currentComics) => {
     console.log("cur", currentComics);
     setCurrentComics({ ...currentComics });
-    // this.setState((prev) => {
-    //   return { ...prev, currentComics: { ...currentComics } };
-    // });
-  };
-
-  const handlerFavorites = (favorite) => {
-    setFavoriteComics((current) => {
-      const favorList = [...current];
-      const index = favorList.findIndex((el) => el.id === favorite.id);
-      if (index === -1) {
-        favorList.push(favorite);
-      } else {
-        favorList.splice(index, 1);
-      }
-      localStorage.setItem(`arrFavorite`, JSON.stringify(favorList));
-      return favorList;
-    });
-  };
-
-  const isFavorite = (comics) => {
-    const favor = favoriteComics.filter((el) => el.id === comics);
-    return !!favor.length;
-  };
-
-  const handlerOrder = (order) => {
-    setOrderComics((current) => {
-      const orders = [...current];
-
-      const index = orders.findIndex((el) => el.id === order.id);
-      if (index === -1) {
-        orders.push({ ...order, count: 1 });
-      } else {
-        orders[index].count += 1;
-      }
-      localStorage.setItem("arrOrder", JSON.stringify(orders));
-      return orders;
-    });
-  };
-
-  const handlerDeleteOrderItem = (order) => {
-    setOrderComics((current) => {
-      const orderList = [...current];
-      const index = orderList.findIndex((el) => el.id === order.id);
-      if (index !== -1) {
-        orderList.splice(index, 1);
-      }
-      localStorage.setItem(`arrOrder`, JSON.stringify(orderList));
-      return orderList;
-    });
-  };
-
-
-  const handlerInrement = (order) => {
-    console.log("incr", order);
-    setOrderComics((current) => {
-      const orders = [...current];
-      const index = orders.findIndex((el) => el.id === order.id);
-      if (index !== -1) {
-        orders[index].count += 1;
-      }
-      localStorage.setItem("arrOrder", JSON.stringify(orders));
-      return orders;
-    });
-  };
-
-  const handlerDecrement = (order) => {
-    console.log("decr", order);
-    setOrderComics((current) => {
-      const orders = [...current];
-      const index = orders.findIndex((el) => el.id === order.id);
-      if (index !== -1 && orders[index].count > 1) {
-        orders[index].count -= 1;
-      }
-      localStorage.setItem("arrOrder", JSON.stringify(orders));
-      return orders;
-    });
   };
 
   return (
     <div className="page__wrapper">
-      <Header
-        countOrder={orderComics
-          .map(({ count }) => count)
-          .reduce((prev, curr) => prev + curr, 0)}
-        countFavor={favoriteComics.length}
-      />
+      <Header />
       <main className="main">
         <div className="container">
           <Routes>
@@ -140,9 +50,6 @@ const App = () => {
                 <Comics
                   isModal={handlerToggleModal}
                   currentComics={handlerCurrentComics}
-                  handlerFavorites={handlerFavorites}
-                  favoriteList={favoriteComics}
-                  isFavorite={isFavorite}
                 />
               }
             />
@@ -151,12 +58,7 @@ const App = () => {
               element={
                 <OrderBasket
                   handlerToggleModal={handlerToggleModal}
-                  value={valueInput}
                   current={handlerCurrentComics}
-                  orderComics={orderComics}
-                  handlerInrement={handlerInrement}
-                  handlerDecrement={handlerDecrement}
-                  // handlerDeleteOrderItem={handlerDeleteOrderItem}
                 />
               }
             />
@@ -165,10 +67,7 @@ const App = () => {
               element={
                 <FavoriteItems
                   isModal={handlerToggleModal}
-                  favoriteList={favoriteComics}
                   currentComics={handlerCurrentComics}
-                  handlerFavorites={handlerFavorites}
-                  isFavorite={isFavorite}
                 />
               }
             />
@@ -189,7 +88,7 @@ const App = () => {
             content={currentComics}
             buttonContent={"Delete"}
             handlerModal={() => {
-              handlerDeleteOrderItem(currentComics);
+              dispatch(actionDeleteOrderItem(currentComics));
             }}
           />
         ) : (
@@ -199,7 +98,7 @@ const App = () => {
             content={currentComics}
             buttonContent={""}
             handlerModal={() => {
-              handlerOrder(currentComics);
+              dispatch(actionAddOrder(currentComics));
             }}
           />
         ))}

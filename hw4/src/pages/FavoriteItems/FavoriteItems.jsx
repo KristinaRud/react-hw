@@ -3,15 +3,17 @@ import ComicsItem from "../../components/Comics/components/ComicsItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import "./FavoriteItems.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { actionToggleFavorite } from "../../reducer";
 
 const FavoriteItems = ({
-  favoriteList,
-  handlerFavorites,
-  isFavorite,
   isModal,
   currentComics,
 }) => {
-  const comicsCards = favoriteList?.map((el) => (
+  const dispatch = useDispatch();
+  const favoriteComics = useSelector((state) => state.favorite.favoriteList)
+  console.log("stateFavor", useSelector((state) => state));
+  const comicsCards = favoriteComics?.map((el) => (
     <SwiperSlide key={el.id} className="row-item comic-item">
       <ComicsItem
         src={el.img.url + el.img.portrait_uncanny}
@@ -20,11 +22,11 @@ const FavoriteItems = ({
         creators={el.creators}
         price={el.price}
         isModal={isModal}
-        isFavorite={isFavorite(el.id)}
+        isFavorite={favoriteComics?.some((item) => item.id === el.id)}
         currentComics={() => {
           currentComics(el);
         }}
-        addToFavorites={() => handlerFavorites(el)}
+        addToFavorites={() => dispatch(actionToggleFavorite(el))}
       />
     </SwiperSlide>
   ));
