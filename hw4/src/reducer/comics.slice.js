@@ -6,7 +6,6 @@ import { API_URL } from "../configs/API";
 
 const initialState = {
 	slider: [],
-	// page: {},
 	isLoading: true,
 }
 const comicsSlice = createSlice({
@@ -16,16 +15,30 @@ const comicsSlice = createSlice({
 		actionComicsSlider: (state, { payload }) => {
 			state.slider = [...payload];
 		},
-		// actionCinemaPage: (state, {payload}) => {
-		// 	state.page = {...payload}
-		// },
 		actionLoading: (state, { payload }) => {
 			state.isLoading = payload
+		},
+		actionUpdate: (state, {payload})=>{
+			const favor = JSON.parse(localStorage.getItem(`arrFavorite`))?.map((el) => {
+				const index = payload.findIndex((item) => item.id === el.id);
+				if (index !== 1) {
+				  return payload[index];
+				}
+			});
+			localStorage.setItem(`arrFavorite`, JSON.stringify(favor));
+
+			const order = JSON.parse(localStorage.getItem(`arrOrder`))?.map((el) => {
+				const index = payload.findIndex((item) => item.id === el.id);
+				if (index !== 1) {
+				  return { ...payload[index], count: el.count };
+				}
+			});
+			localStorage.setItem(`arrOrder`, JSON.stringify(order));
 		}
 	}
 })
 
-export const { actionComicsSlider, actionLoading } = comicsSlice.actions
+export const { actionComicsSlider, actionLoading, actionUpdate } = comicsSlice.actions
 
 export const actionFetchSliderComics = () => (dispatch) => {
 	dispatch(actionLoading(true));
@@ -33,33 +46,9 @@ export const actionFetchSliderComics = () => (dispatch) => {
 		.then((data) => {
 			dispatch(actionComicsSlider(data));
 			dispatch(actionLoading(false));
+			dispatch(actionUpdate(data));
 		})
 
 }
-// export const actionFetchPageCinema = (id) => (dispatch) => {
 
-// 	return sendRequest(`${API_URL}/movie/${id}?api_key=${API_KEY_3}`)
-// 		.then((data) => {
-// 			const {
-// 				backdrop_path,
-// 				poster_path,
-// 				original_title,
-// 				title,
-// 				genres,
-// 				runtime,
-// 				overview,
-// 				release_date
-// 			} = data;
-// 			dispatch(actionCinemaPage({
-// 				backdrop_path,
-// 				poster_path,
-// 				original_title,
-// 				title,
-// 				genres,
-// 				runtime,
-// 				overview,
-// 				release_date
-// 			}));
-// 		})
-// }
 export default comicsSlice.reducer
