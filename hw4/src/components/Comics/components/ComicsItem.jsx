@@ -1,7 +1,11 @@
 import Button from "../../Button/Button";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { actionModal } from "../../../reducer";
 
-const ComicsItem =({src, alt, title, creators, price, isModal, isFavorite, currentComics, addToFavorites,})=>{
+const ComicsItem =({src, alt, title, creators, price, isFavorite, currentComics, addToFavorites,})=>{
+  const dispatch=useDispatch();
+  const openModal = () => dispatch(actionModal(true));
   return (
     <div>
       <div className="row-item-image">
@@ -44,7 +48,7 @@ const ComicsItem =({src, alt, title, creators, price, isModal, isFavorite, curre
         <Button
           className="btn-buy"
           onClick={() => {
-            isModal();
+            openModal();
             currentComics();
           }}
           content={<span className="innerFill">Add to cart</span>}
@@ -64,7 +68,6 @@ ComicsItem.propTypes = {
   price: PropTypes.string,
   isFavorite: PropTypes.bool.isRequired,
   addToFavorites: PropTypes.func.isRequired,
-  isModal: PropTypes.func.isRequired,
   currentComics: PropTypes.func.isRequired,
 };
 

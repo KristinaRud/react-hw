@@ -1,18 +1,25 @@
 import "./Modal.scss";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import {actionModal} from "../../reducer"
 
-const Modal = ({modalTitle, closeModal, handlerModal, content, buttonContent}) => {
-  const { title, img, creators, price } = content;
+const Modal = ({modalTitle,  handlerModal, buttonContent}) => {
+  const current = useSelector((state)=>state.app.currentComics);
+  const dispatch=useDispatch();
+  const closeModal = () => dispatch(actionModal(false));
+
+  const { title, img, creators, price } = current;
+
   return (
-    <div className="modal-wrapper" onClick={closeModal}>
+    <div className="modal-wrapper" onClick={()=>closeModal()}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="detail-item-bg">
           <img className="back-img" src={img.url + img.background} />
         </div>
         <div className="modal-box">
           {/* надо поменять на компонент button */}
-          <button type="button" onClick={closeModal} className="modal-close">
+          <button type="button" onClick={()=>closeModal()} className="modal-close">
             <svg viewBox="0 0 16 16" width="16" height="16">
               <path
                 fill="#E62429"
@@ -20,7 +27,9 @@ const Modal = ({modalTitle, closeModal, handlerModal, content, buttonContent}) =
               />
             </svg>
           </button>
-          {modalTitle}
+          <div className="modal-title">
+                <h2>{modalTitle}</h2>
+          </div>
           <div className="modal-header">
             <h4>{title}</h4>
           </div>
@@ -60,17 +69,6 @@ const Modal = ({modalTitle, closeModal, handlerModal, content, buttonContent}) =
 export default Modal;
 
 Modal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
   handlerModal: PropTypes.func.isRequired,
-  content: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    img: PropTypes.shape({
-      url: PropTypes.string,
-      portrait_uncanny: PropTypes.string,
-      background: PropTypes.string,
-      clean: PropTypes.string,
-    }).isRequired,
-    creators: PropTypes.string,
-    price: PropTypes.string,
-  }).isRequired,
+  modalTitle:PropTypes.string.isRequired
 };

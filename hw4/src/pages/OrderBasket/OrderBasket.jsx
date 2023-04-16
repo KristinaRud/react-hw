@@ -6,11 +6,14 @@ import cx from 'classnames';
 import "./OrderBasket.scss";
 import OrderItem from "./components/OrderItem/OrderItem";
 import { useDispatch, useSelector } from "react-redux";
-import { actionIncrementCount, actionDecrementCount } from "../../reducer";
+import { actionIncrementCount, actionDecrementCount,actionCurrentComics,actionDeleteOrderItem } from "../../reducer";
+import Modal from "../../components/Modal/Modal";
 
-const OrderBasket = ({ handlerToggleModal, changedValue, current, handlerDeleteOrderItem }) => {
+const OrderBasket = () => {
   const dispatch = useDispatch();
   const orderComics = useSelector((state) => state.order.orderList);
+  const isModal = useSelector((state) => state.app.isModal);
+  const current=useSelector((state)=>state.app.currentComics);
 
   const totalPrice = (orderComics?.map(el => el.count * el.price)).reduce((prev, curr) => prev + curr, 0).toFixed(2);
   const orderCards = orderComics?.map((el) => (
@@ -19,16 +22,14 @@ const OrderBasket = ({ handlerToggleModal, changedValue, current, handlerDeleteO
         handlerDecrement={() => dispatch(actionDecrementCount(el))}
         handlerInrement={() => dispatch(actionIncrementCount(el))}
         handlerDeleteOrderItem={() => { handlerDeleteOrderItem(el) }}
-        isModal={handlerToggleModal}
         count={el.count}
-        changedValue={changedValue}
         src={el.img?.url + el.img?.portrait_uncanny}
         alt={el.title}
         title={el.title}
         price={(el.count * el.price).toFixed(2)}
         current={() => {
-          current(el);
-        }}
+          dispatch(actionCurrentComics(el));
+      }}
       />
     </div>
   ));
@@ -45,6 +46,16 @@ const OrderBasket = ({ handlerToggleModal, changedValue, current, handlerDeleteO
       <div className={cx({ "order-container": (orderCards.length > 2) })}>
         {(orderCards.length === 0) ? <h1>No item in your basket</h1> : orderCards}
       </div>
+
+      {isModal && (
+        <Modal
+        modalTitle={"Do you want to delete item?"}
+        buttonContent={"Delete"}
+        handlerModal={() => {
+          dispatch(actionDeleteOrderItem(current));
+        }}
+      />
+      )}
 
     </>
   );

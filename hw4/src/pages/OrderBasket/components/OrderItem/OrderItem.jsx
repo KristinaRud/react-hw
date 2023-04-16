@@ -1,9 +1,10 @@
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { useDispatch, useSelector} from "react-redux";
+import {actionModal} from "../../../../reducer";
 
 const OrderItem = ({
-  isModal,
   handlerDecrement,
   handlerInrement,
   current,
@@ -13,6 +14,8 @@ const OrderItem = ({
   price,
   count,
 }) => {
+  const dispatch=useDispatch();
+  const openModal = () => dispatch(actionModal(true));
   return (
     <>
       <div className="row-item-text title-order">
@@ -25,7 +28,7 @@ const OrderItem = ({
          
           className="delete-item"
           onClick={() => {
-            isModal();
+            openModal();
             current();
           }}
         >

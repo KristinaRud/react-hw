@@ -31,7 +31,6 @@ export const actionFetchSliderComics = () => (dispatch) => {
 	dispatch(actionLoading(true));
 	return sendRequest(`${API_URL}`)
 		.then((data) => {
-			//console.log(data);
 			dispatch(actionComicsSlider(data));
 			dispatch(actionLoading(false));
 		})

@@ -4,11 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	currentComics: [],
-	// profile: {
-	// 	name: "John",
-	// 	lastName: "Doe",
-	// 	email: "John@gmail.com",
-	// },
 	isModal: false,
 }
 const appSlice = createSlice({
