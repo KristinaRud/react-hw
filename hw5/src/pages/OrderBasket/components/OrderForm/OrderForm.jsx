@@ -25,15 +25,10 @@ const OrderForm = ({ price }) => {
         onSubmit={(values, { resetForm }) => {
           console.log("Your order:", JSON.stringify(orders));
           console.log("Your information:", JSON.stringify(values));
-          dispatch(
-            actionForm({
-              ...values,
-              order: orders,
-            })
-          );
           dispatch(actionSetOrder([]));
-          navigate("/");
           resetForm();
+          navigate("/");
+          
         }}
         validationSchema={validationSchema}
       >
