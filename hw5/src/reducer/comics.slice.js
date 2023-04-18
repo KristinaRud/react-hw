@@ -19,21 +19,25 @@ const comicsSlice = createSlice({
 			state.isLoading = payload
 		},
 		actionUpdate: (state, {payload})=>{
-			const favor = JSON.parse(localStorage.getItem(`arrFavorite`))?.map((el) => {
-				const index = payload.findIndex((item) => item.id === el.id);
-				if (index !== 1) {
-				  return payload[index];
-				}
-			});
-			localStorage.setItem(`arrFavorite`, JSON.stringify(favor));
+			if(localStorage.getItem(`arrFavorite`)){
+				const favor = (JSON.parse(localStorage.getItem(`arrFavorite`)))?.map((el) => {
+					const index = payload.findIndex((item) => item.id === el.id);
+					if (index !== 1) {
+					  return payload[index];
+					}
+				});
+				localStorage.setItem(`arrFavorite`, JSON.stringify(favor));
+			}
 
-			const order = JSON.parse(localStorage.getItem(`arrOrder`))?.map((el) => {
-				const index = payload.findIndex((item) => item.id === el.id);
-				if (index !== 1) {
-				  return { ...payload[index], count: el.count };
-				}
-			});
-			localStorage.setItem(`arrOrder`, JSON.stringify(order));
+			if(localStorage.getItem(`arrOrder`)){
+				const order = (JSON.parse(localStorage.getItem(`arrOrder`)))?.map((el) => {
+					const index = payload.findIndex((item) => item.id === el.id);
+					if (index !== 1) {
+					  return { ...payload[index], count: el.count };
+					}
+				});
+				localStorage.setItem(`arrOrder`, JSON.stringify(order));
+			}
 		}
 	}
 })

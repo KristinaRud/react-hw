@@ -8,6 +8,7 @@ const Input = ({label, type, classNames, name, placeholder, error, ...restProps}
 	return (
 		<label className={cx("form-item", classNames, {"has-validation":error})}>
 			<p className="form-label">{label}</p>
+
 			<Field type={type} className="form-control" name={name} placeholder={placeholder} {...restProps} />
 			<ErrorMessage name={name} className={'error-message'} component={"p"}/>
 		</label>

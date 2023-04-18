@@ -40,11 +40,9 @@ const OrderBasket = () => {
       <Link to="/"><HomeIcon sx={{ color: "black" }} /><ArrowBackIcon sx={{ color: "black" }} /></Link>
       <div className="header-order">
         <h1>OrderBasket</h1>
-        <h1>Total: {totalPrice && (<span className="total-price">${totalPrice}</span>)}</h1>
       </div>
-
       <div className={cx({ "order-container": (orderCards.length > 2) })}>
-        {(orderCards.length === 0) ? <h1>No item in your basket</h1> : (<div>{orderCards}<OrderForm/></div> )}
+        {(orderCards.length === 0) ? <h1>No item in your basket</h1> : <><OrderForm price={totalPrice}/> {orderCards}</>}
         
       </div>
 
