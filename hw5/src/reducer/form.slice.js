@@ -17,8 +17,12 @@ const formSlice = createSlice({
 		actionForm: (state, { payload }) => {
 			state.data = {...payload};
 		},
+        actionConfirm:(state)=>{
+            localStorage.removeItem(`arrOrder`);
+            console.log("Order is confirm", JSON.stringify(state.data));
+        }
 	}
 })
 
-export const {actionForm} = formSlice.actions
+export const {actionForm, actionConfirm} = formSlice.actions
 export default formSlice.reducer

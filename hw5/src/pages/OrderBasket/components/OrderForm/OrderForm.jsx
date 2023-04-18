@@ -1,7 +1,7 @@
 import {Formik, Form} from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actionForm } from "../../../../reducer";
+import { actionForm,actionConfirm } from "../../../../reducer";
 import { validationSchema } from "./validation";
 import { Input } from "../../../../components/Form";
 
@@ -14,16 +14,19 @@ const OrderForm = () => {
   return (
     <div className="page">
       <Formik
-        validationSchema={validationSchema}
+       
         initialValues={formOrder}
         onSubmit={(values, { resetForm }) => {
-          alert(values);
-          // dispatch(actionForm({
-          //   ...values,
-          //   order: [JSON.parse(localStorage.getItem(`arrOrder`))],
-          // }));
-          // navigate("/");
-          // resetForm();
+          (()=>{
+            dispatch(actionForm({
+              ...values,
+              order: JSON.parse(localStorage.getItem(`arrOrder`)),
+            }));
+            dispatch(actionConfirm());
+          })();
+          console.log(useSelector(state=>state));
+          //navigate("/");
+          resetForm();
         }}
       >
         {({ errors, touched }) => (
