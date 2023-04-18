@@ -1,0 +1,27 @@
+.page {
+	.form-block {
+		padding: 16px;
+		border: 2px solid #4f595c;
+		border-radius: 4px;
+		box-sizing: border-box;
+
+		&:not(:last-child) {
+			margin-bottom: 32px;
+		}
+
+		legend {
+			float: none;
+			width: auto;
+			text-align: left;
+		}
+
+		.form-item {
+			display: block;
+			width: 100%;
+		}
+
+		.form-label {
+			text-align: left;
+		}
+	}
+}
