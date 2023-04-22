@@ -3,7 +3,7 @@ import { PatternFormat } from 'react-number-format';
 import { Formik, Form } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actionForm, actionSetOrder } from "../../../../reducer";
+import { actionSetOrder } from "../../../../reducer";
 import { validationSchema } from "./validation";
 import { Input } from "../../../../components/Form";
 
