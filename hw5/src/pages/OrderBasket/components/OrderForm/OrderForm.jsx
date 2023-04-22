@@ -10,7 +10,7 @@ import { Input } from "../../../../components/Form";
 import "./OrderForm.scss";
 
 const OrderForm = ({ price }) => {
-  const formOrder = useSelector((state) => state.form.data);
+  //const formOrder = useSelector((state) => state.form.data);
   const orders = useSelector((state) => state.order.orderList);
   const countTotal = orders
     .map(({ count }) => count)
@@ -21,7 +21,7 @@ const OrderForm = ({ price }) => {
   return (
     <div className="page">
       <Formik
-        initialValues={formOrder}
+        //initialValues={formOrder}
         onSubmit={(values, { resetForm }) => {
           console.log("Your order:", JSON.stringify(orders));
           console.log("Your information:", JSON.stringify(values));
