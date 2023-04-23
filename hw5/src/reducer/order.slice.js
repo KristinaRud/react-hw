@@ -9,7 +9,6 @@ const orderSlice = createSlice({
     reducers: {
         actionSetOrder: (state, { payload }) => {
             state.orderList = [...payload];
-            // localStorage.setItem("arrOrder", payload);
         },
         actionAddOrder: (state, { payload }) => {
             const index = state.orderList.findIndex((el) => el.id === payload.id);

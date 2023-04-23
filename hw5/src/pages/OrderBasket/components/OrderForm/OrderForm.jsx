@@ -25,10 +25,11 @@ const OrderForm = ({ price }) => {
         onSubmit={(values, { resetForm }) => {
           console.log("Your order:", JSON.stringify(orders));
           console.log("Your information:", JSON.stringify(values));
+          localStorage.removeItem('arrOrder');
           dispatch(actionSetOrder([]));
           resetForm();
           navigate("/");
-          
+
         }}
         validationSchema={validationSchema}
       >
@@ -69,9 +70,9 @@ const OrderForm = ({ price }) => {
                 placeholder="Enter your Phone"
                 label={"Phone"}
                 error={errors.phone && touched.phone}
-              />   
+              />
 
-                
+
             </div>
 
             <div className="checkout-total">
