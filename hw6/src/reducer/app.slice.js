@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	currentComics: [],
 	isModal: false,
-}
+};
 const appSlice = createSlice({
 	name: "app",
 	initialState,
