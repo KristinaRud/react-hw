@@ -44,7 +44,7 @@ const Slider=({data})=>{
       </Swiper>
       {isModal && (
         <Modal
-        modalTitle={"Do you want to buy item?"}
+        modalTitle={<h2>Do you want to buy item?</h2>}
         buttonContent={""}
         handlerModal={() => {
           dispatch(actionAddOrder(current));

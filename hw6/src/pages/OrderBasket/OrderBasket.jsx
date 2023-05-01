@@ -48,7 +48,7 @@ const OrderBasket = () => {
 
       {isModal && (
         <Modal
-        modalTitle={"Do you want to delete item?"}
+        modalTitle={<h2>Do you want to delete item?</h2>}
         buttonContent={"Delete"}
         handlerModal={() => {
           dispatch(actionDeleteOrderItem(current));

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {actionModal} from "../../reducer"
 
 const Modal = ({modalTitle,  handlerModal, buttonContent}) => {
-  const current = useSelector((state)=>state.app.currentComics);
+  const current = useSelector((store)=>store.app.currentComics);
   const dispatch=useDispatch();
   const closeModal = () => dispatch(actionModal(false));
 
@@ -15,7 +15,7 @@ const Modal = ({modalTitle,  handlerModal, buttonContent}) => {
     <div className="modal-wrapper" onClick={()=>closeModal()}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="detail-item-bg">
-          <img className="back-img" src={img.url + img.background} />
+          <img className="back-img" src={img?.url + img?.background} />
         </div>
         <div className="modal-box">
           {/* надо поменять на компонент button */}
@@ -28,7 +28,7 @@ const Modal = ({modalTitle,  handlerModal, buttonContent}) => {
             </svg>
           </button>
           <div className="modal-title">
-                <h2>{modalTitle}</h2>
+                {modalTitle}
           </div>
           <div className="modal-header">
             <h4>{title}</h4>
@@ -39,7 +39,7 @@ const Modal = ({modalTitle,  handlerModal, buttonContent}) => {
                 className="item-img"
                 alt={title}
                 title={title}
-                src={img.url + img.clean}
+                src={img?.url + img?.clean}
               />
             </div>
             <div>
@@ -70,5 +70,5 @@ export default Modal;
 
 Modal.propTypes = {
   handlerModal: PropTypes.func.isRequired,
-  modalTitle:PropTypes.string.isRequired
+  modalTitle:PropTypes.element.isRequired
 };

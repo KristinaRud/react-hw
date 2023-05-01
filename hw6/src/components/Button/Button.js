@@ -17,9 +17,10 @@ const Button =({ content, onClick, className, type})=> {
 export default Button;
 
 Button.propTypes = {
-  isModal: PropTypes.func,
-  currentComics: PropTypes.func,
   content:PropTypes.element,
+  onClick:PropTypes.func,
+  className:PropTypes.string, 
+  type:PropTypes.string
 };
 
 Button.defaultProps={
