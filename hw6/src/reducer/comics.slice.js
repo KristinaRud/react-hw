@@ -15,9 +15,10 @@ const comicsSlice = createSlice({
 		actionComicsSlider: (state, { payload }) => {
 			console.log("pay", payload);
 			state.slider = [...payload];
+			console.log("state.slider", state.slider);
 		},
 		actionLoading: (state, { payload }) => {
-			state.isLoading = payload
+			state.isLoading = payload;
 		},
 		actionUpdate: (state, { payload }) => {
 			console.log(payload);
@@ -50,6 +51,7 @@ export const actionFetchSliderComics = () => (dispatch) => {
 	dispatch(actionLoading(true));
 	return sendRequest(`${API_URL}`)
 		.then((data) => {
+			console.log("data", data);
 			dispatch(actionComicsSlider(data));
 			dispatch(actionLoading(false));
 			dispatch(actionUpdate(data));

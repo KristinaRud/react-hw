@@ -1,5 +1,6 @@
-import comicsSlice from "./comics.slice";
-import { actionComicsSlider, actionLoading, actionUpdate } from "../reducer"
+import comicsSlice, { actionLoading } from "./comics.slice";
+import * as actions from "../reducer";
+jest.mock('../helpers/sendRequest');
 
 const initialState = {
     slider: [],
@@ -12,10 +13,10 @@ describe('Comics reducer work', () => {
     });
 
     // test('should get slider', () => {
-    //     expect(comicsSlice(initialState, { type: actionComicsSlider, payload: { id: "1" } })).toEqual({
-    //         slider: { id: "1" },
+    //     expect(comicsSlice(initialState, { type: actionComicsSlider, payload: [{ id: '1', title: 'test' }] })).toEqual({
+    //         slider: [{ id: '1', title: 'test' }],
     //         isLoading: true,
-    //     });
+    //     })
     // });
 
     // test('should changed slider with count', () => {

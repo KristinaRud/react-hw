@@ -86,6 +86,22 @@
     overflow: hidden;
 }
 
+.table-item{
+    padding: 10px;
+    margin: 0 30px 30px 0;
+    box-shadow: 1px 1px 10px #ed3034;
+    width: 280px;
+    h5{
+        max-width: 300px;
+    }
+    &:hover {
+        .row-item-image img {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+    }
+}
+
 .module-header {
     position: relative;
     margin-left: 0;

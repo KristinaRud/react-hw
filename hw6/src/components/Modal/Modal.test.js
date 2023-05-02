@@ -4,7 +4,6 @@ import { Provider, useDispatch } from 'react-redux';
 import store from "../../store";
 import '@testing-library/jest-dom';
 import {actionModal} from "../../reducer";
-import {useState} from "react";
 
 const Component = ({modalTitle,buttonContent})=>{
     const dispatch=useDispatch();
