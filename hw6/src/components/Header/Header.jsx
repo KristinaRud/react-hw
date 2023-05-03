@@ -8,7 +8,7 @@ const Header = () => {
   const orders = useSelector((state) => state.order.orderList);
   return (
     <header className="header">
-      <div className="container">
+      <div className="container-sm container">
         <div className="header__wrapper">
           <div className="header__actions">
             <div className="header__favorites-list">

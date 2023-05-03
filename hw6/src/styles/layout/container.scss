@@ -6,13 +6,14 @@
 .container-md,
 .container-sm {
 	width: 100%;
-	padding-right: calc(16px * 0.5);
-	padding-left: calc(16px * 0.5);
+	// padding-right: calc(16px * 0.5);
+	// padding-left: calc(16px * 0.5);
 	margin-right: auto;
 	margin-left: auto;
-	padding: 0 40px 0 40px;
+	// padding: 0 40px 0 40px;
     position: relative;
 }
+
 
 @media (min-width: 576px) {
 	.container-sm, .container {
