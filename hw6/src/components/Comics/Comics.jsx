@@ -12,6 +12,7 @@ const Comics = () => {
 
   const { isCardView, setIsCardView } = useContext(CardViewContext);
   const [state, setState] = useState({ checkedA: true });
+  
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
     setIsCardView(!isCardView);
