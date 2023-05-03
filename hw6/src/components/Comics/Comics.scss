@@ -1,24 +1,12 @@
-.films__title {
-    // position: relative;
-    display: inline;
-    // margin: 0 26px;
+.comics__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 32px;
     font-weight: 600;
-
-    // &:before {
-    //     content: '';
-    //     display: block;
-    //     position: absolute;
-    //     bottom: -12px;
-    //     left: 0;
-    //     width: 16%;
-    //     height: 6px;
-    //     border-radius: 6px;
-    //     background-color: #afaeae;
-    // }
 }
 
-.films__wrapper {
+.comics__wrapper {
     display: flex;
     flex-wrap: wrap;
     padding: 0px 0;
@@ -82,13 +70,14 @@
     }
 }
 
-.films__slider {
+.comics__slider {
     overflow: hidden;
+    padding: 5px;
 }
 
 .table-item{
     padding: 10px;
-    margin: 0 30px 30px 0;
+    margin: 0 13px 30px 13px;
     box-shadow: 1px 1px 10px #ed3034;
     width: 280px;
     h5{
@@ -176,15 +165,15 @@
 }
 
 .swiper {
-    position: static;
+    position: static !important;
 }
 
 .swiper-button-next {
-    right: 0;
+    right: 0 !important;
 }
 
 .swiper-button-prev {
-    left: 0;
+    left: 0 !important;
 }
 
 .meta-title {
@@ -247,4 +236,14 @@
     bottom: 0;
     right: 0;
     transform: rotate(180deg);
+}
+
+.switch-container{
+    display: flex;
+    align-items: center;
+}
+
+.switch-title{
+    font: 800 26px/1 "RobotoCondensed", "Trebuchet MS", Helvetica, Arial, sans-serif;
+    letter-spacing: 1px;
 }

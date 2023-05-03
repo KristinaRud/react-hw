@@ -8,12 +8,12 @@ const Comics = () => {
 
   return (
     <>
-      <div className="films__title">
+      <div className="comics__title">
         <h2 className="module-header">Best Selling Digital Comics </h2>
       </div>
       {loading && <h3>Loading...</h3>}
       {!loading && (
-        <div className="films__slider">
+        <div className="comics__slider">
           <Slider data={dataComics} />
         </div>
       )}

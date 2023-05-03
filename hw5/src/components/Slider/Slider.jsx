@@ -35,7 +35,7 @@ const Slider=({data})=>{
         <Swiper
         slidesPerView={5}
         spaceBetween={16}
-        className="films__wrapper"
+        className="comics__wrapper"
         navigation={true}
         pagination={{ clickable: true }}
         modules={[Pagination, Navigation]}

@@ -39,14 +39,14 @@ const Comics = ({ isModal, currentComics, handlerFavorites, isFavorite }) => {
   ));
   return (
     <>
-      <div className="films__title">
+      <div className="comics__title">
         <h2 className="module-header">Best Selling Digital Comics </h2>
       </div>
-      <div className="films__slider">
+      <div className="comics__slider">
         <Swiper
           slidesPerView={5}
           spaceBetween={16}
-          className="films__wrapper"
+          className="comics__wrapper"
           navigation={true}
           // grabCursor={false}
           // draggable={false}
